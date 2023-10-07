@@ -12,9 +12,8 @@
 | first_name         | string  | null: false               |
 | last_name_kana     | string  | null: false               |
 | first_name_kana    | string  | null: false               |
-| birthdate_y_id     | integer | null: false               |
-| birthdate_m_id     | integer | null: false               |
-| birthdate_d_id     | integer | null: false               |
+| birth_date         | date    | null: false               |
+
 
 ### Association
 
@@ -38,7 +37,6 @@
 
 ### Association
 
-- has_one :destination
 - has_one :purchase_record
 - belongs_to :user
 
@@ -55,21 +53,21 @@
 
 - belongs_to :item
 - belongs_to :user
+- has_one :destination
 
 
 ## destinations テーブル
 
 | Column          | Type       | Options                        |
 | ----------------| ------     | ------------------------------ |
-| postal_code     | integer    | null: false                    |
-| prefecture_id   | integer    | null: false                    |
-| city            | text       | null: false                    |
-| street_num      | text       | null: false                    |
-| building        | text       | null: false                    |
-| phone           | integer    | null: false                    |
-| item            | references | null: false, foreign_key: true |
-
+| postal_code     | string     | null: false                    |
+| region_id       | integer    | null: false                    |
+| city            | string     | null: false                    |
+| street_num      | string     | null: false                    |
+| building        | string     |                                |
+| phone           | string     | null: false                    |
+| purchase_record | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :item
+-belongs_to :purchase_record
