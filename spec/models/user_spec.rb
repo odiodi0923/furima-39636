@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
+
   end
 
   describe 'ユーザー新規登録' do
@@ -93,7 +94,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'last_nameが半角では登録できない' do
-        @user.last_name = Faker::Name.last_name
+        @user.last_name = kato
         @user.valid?
         expect(@user.errors.full_messages).to include('Last name  is invalid. Input full-width characters')
       end
@@ -105,7 +106,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'first_nameが半角では登録できない' do
-        @user.first_name = Faker::Name.first_name
+        @user.first_name = taro
         @user.valid?
         expect(@user.errors.full_messages).to include('First name  is invalid. Input full-width characters')
       end
