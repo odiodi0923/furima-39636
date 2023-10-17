@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-
   before do
     @item = FactoryBot.build(:item)
   end
@@ -13,15 +12,12 @@ RSpec.describe Item, type: :model do
       end
     end
 
-
-
-
-     context '出品できない場合' do
+    context '出品できない場合' do
       it 'item_imageが空では登録できない' do
-         @item.item_image = nil
-         @item.valid?
-         expect(@item.errors.full_messages).to include("Item image can't be blank")
-      end 
+        @item.item_image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item image can't be blank")
+      end
 
       it 'item_nameが空では登録できない' do
         @item.item_name = ''
@@ -44,20 +40,20 @@ RSpec.describe Item, type: :model do
       it 'priceが300以下だと登録できない' do
         @item.price = '100'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
-       end
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
+      end
 
-        it 'priceが9_999_999以上だと登録できない' do
+      it 'priceが9_999_999以上だと登録できない' do
         @item.price = '1000000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
-       end
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
+      end
 
-       it 'priceが全角だと登録できない' do
+      it 'priceが全角だと登録できない' do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid. Input half-width characters")
-       end
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
+      end
 
       it 'category_idが1では登録できない' do
         @item.category_id = '1'
@@ -76,13 +72,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee option can't be blank")
       end
-      
+
       it 'delivery_d_idが1では登録できない' do
         @item.delivery_d_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery d can't be blank")
       end
-
     end
   end
 end
