@@ -4,11 +4,11 @@ FactoryBot.define do
 
     item_name             { Faker::Lorem.sentence(word_count: 15) }
     description           { Faker::Lorem.paragraph }
-    category_id           { Faker::Number.between(from: 1, to: 11) }
-    condition_id          { Faker::Number.between(from: 1, to: 7) }
-    fee_option_id         { Faker::Number.between(from: 1, to: 3) }
-    region_id             { Faker::Number.between(from: 1, to: 48) }
-    delivery_d_id         { Faker::Number.between(from: 1, to: 4) }
+    category_id           { Faker::Number.between(from: 2, to: 11) }
+    condition_id          { Faker::Number.between(from: 2, to: 7) }
+    fee_option_id         { Faker::Number.between(from: 2, to: 3) }
+    region_id             { Faker::Number.between(from: 2, to: 48) }
+    delivery_d_id         { Faker::Number.between(from: 2, to: 4) }
     price                 { Faker::Number.between(from: 300, to: 9_999_999) }
 
     association :user
