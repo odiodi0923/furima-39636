@@ -73,10 +73,22 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Fee option can't be blank")
       end
 
+      it 'region_idが1では登録できない' do
+        @item.region_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Region can't be blank")
+      end
+
       it 'delivery_d_idが1では登録できない' do
         @item.delivery_d_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery d can't be blank")
+      end
+
+      it 'ユーザーが紐付いていなければ投稿できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
