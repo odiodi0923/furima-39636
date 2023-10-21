@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  # 次に実装 has_one :purchase_record
+  has_one :purchase_record
   belongs_to :user
   has_one_attached :item_image
 
