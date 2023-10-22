@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :access_correct, only: [:edit]
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.order('created_at DESC')
@@ -21,11 +22,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
     # 以下、間違えて記述。購入機能実装の際に実装。
     # if @item.purchase_record.present?
     # redirect_to root_path
@@ -33,8 +32,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
-
     if @item.update(item_params)
       redirect_to item_path(@item.id)
     else
@@ -55,5 +52,9 @@ class ItemsController < ApplicationController
     return if @item.user.id == current_user.id
 
     redirect_to root_path
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
