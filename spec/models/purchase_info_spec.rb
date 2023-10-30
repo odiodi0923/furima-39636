@@ -19,24 +19,23 @@ RSpec.describe PurchaseInfo, type: :model do
       end
     end
 
-
     context '保存できない場合' do
       it 'postal_codeが空では登録できない' do
         @purchase_info.postal_code = ''
         @purchase_info.valid?
-        expect(@purchase_info.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_info.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it 'postal_codeにハイフンがないと登録できない' do
         @purchase_info.postal_code = '1234567'
         @purchase_info.valid?
-        expect(@purchase_info.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_info.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it 'postal_codeは全角では登録できない' do
         @purchase_info.postal_code = '123-３３３３'
         @purchase_info.valid?
-        expect(@purchase_info.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_info.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it 'region_idが1では登録できない' do
@@ -66,19 +65,19 @@ RSpec.describe PurchaseInfo, type: :model do
       it 'phoneが9桁以下では登録できない' do
         @purchase_info.phone = '22222222'
         @purchase_info.valid?
-        expect(@purchase_info.errors.full_messages).to include("Phone is invalid")
+        expect(@purchase_info.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'phoneが12桁以上では登録できない' do
         @purchase_info.phone = '2222222222222'
         @purchase_info.valid?
-        expect(@purchase_info.errors.full_messages).to include("Phone is invalid")
+        expect(@purchase_info.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'phoneが全角では登録できない' do
         @purchase_info.phone = '２２２２２２２２２２'
         @purchase_info.valid?
-        expect(@purchase_info.errors.full_messages).to include("Phone is invalid")
+        expect(@purchase_info.errors.full_messages).to include('Phone is invalid')
       end
 
       it 'itemが紐付いていなければ投稿できない' do
@@ -93,12 +92,11 @@ RSpec.describe PurchaseInfo, type: :model do
         expect(@purchase_info.errors.full_messages).to include("User can't be blank")
       end
 
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @purchase_info.token = nil
         @purchase_info.valid?
         expect(@purchase_info.errors.full_messages).to include("Token can't be blank")
       end
-
     end
   end
 end
