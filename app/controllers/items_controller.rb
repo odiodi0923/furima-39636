@@ -25,10 +25,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # 以下、間違えて記述。購入機能実装の際に実装。
-    # if @item.purchase_record.present?
-    # redirect_to root_path
-    # end
+    if @item.purchase_record.present?
+    redirect_to root_path
+    end
   end
 
   def update
