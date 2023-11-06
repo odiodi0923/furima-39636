@@ -5,8 +5,8 @@ class PurchaseInfo
   with_options presence: true do
     validates :user_id
     validates :item_id
-    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
-    validates :region_id, numericality: { other_than: 1, message: "can't be blank" }
+    validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'はハイフン(-)を含めた半角文字にしてください' }
+    validates :region_id, numericality: { other_than: 1, message: "を入力してください" }
     validates :city
     validates :street_num
     validates :phone, format: { with: /\A\d{10,11}\z/ }
